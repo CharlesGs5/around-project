@@ -3,6 +3,11 @@ import React from "react";
 const Pokemon = (props) => {
     const { pokemon } = props;
 
+    const clickBtn = (pkm) => {
+        console.log(pkm.name);
+        return pkm.name;
+    }
+
     return(
       <div>
           <div>
@@ -16,6 +21,9 @@ const Pokemon = (props) => {
           <div>{pokemon.types.map((type, index) => {
               return <div key={index}>{type.name}</div>
           })}
+          </div>
+          <div>
+              <button onClick={() => clickBtn(pokemon)}>Add to cart</button>
           </div>
 
       </div>
