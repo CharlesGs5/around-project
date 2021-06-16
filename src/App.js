@@ -2,12 +2,24 @@ import React from "react";
 import './App.css';
 import Navbar from "./components/navbar";
 import Pokedex from "./components/pokedex";
+import Cart from "./components/cart";
+import {CartProvider} from "./components/cartContext";
 import {getPokemon, getPokemonData} from "./utils/apiCalls";
 
 const { useState, useEffect } = React;
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [cartItems, setCarItems] = useState([]);
+
+  const onAdd = (pokemons) => {
+    const exist = cartItems.find(x => x.name === pokemons.name);
+    if(exist) {
+      setCarItems(cartItems.map(x => x.name === pokemons.name ? {...exist, qty: exist.qty + 1} : x));
+    } else {
+      setCarItems([...cartItems, {...pokemons, qty: 1}]);
+    }
+  }
 
   const fetchPokemons = async () => {
     try {
@@ -28,8 +40,11 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
-      <Pokedex pokemons={pokemons}/>
+      <CartProvider>
+        <Navbar/>
+        <Cart onAdd={onAdd} cartItems={cartItems}/>
+        <Pokedex pokemons={pokemons}/>
+      </CartProvider>
     </div>
   );
 }

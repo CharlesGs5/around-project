@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
+import {CartContext} from "./cartContext";
 
 const Pokemon = (props) => {
     const { pokemon } = props;
+    const [cart, setCart] = useContext(CartContext);
 
-    const clickBtn = (pkm) => {
-        console.log(pkm.name);
-        return pkm.name;
+    const addToCart = () => {
+        const pkm = {name: pokemon.name, price: pokemon.height};
+        setCart(curr => [...curr, pkm.price]);
     }
 
     return(
@@ -23,7 +25,7 @@ const Pokemon = (props) => {
           })}
           </div>
           <div>
-              <button onClick={() => clickBtn(pokemon)}>Add to cart</button>
+              <button onClick={addToCart}>Add to cart</button>
           </div>
 
       </div>
