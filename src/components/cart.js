@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {CartContext} from "./cartContext";
+import styles from './../modules/cart.module.css'
 
 const Cart = () => {
     const [cart, setCart] = useContext(CartContext);
@@ -7,10 +8,9 @@ const Cart = () => {
     const totalPrice = cart.reduce((acc, val) => acc + val, 0);
 
     return(
-      <div>
-          <h2>Cart</h2>
-          <h3>Items in Cart: {cart.length}</h3>
-          <h3>Total Price: {totalPrice}</h3>
+      <div className={styles.cart}>
+          <div>Items in Cart: {cart.length}</div>
+          <div>Total Price: {totalPrice}</div>
       </div>
     );
 }

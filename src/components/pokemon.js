@@ -1,5 +1,7 @@
 import React, {useContext} from "react";
 import {CartContext} from "./cartContext";
+import { Button } from "@material-ui/core";
+import styles from './../modules/pokemon-card.module.css'
 
 const Pokemon = (props) => {
     const { pokemon } = props;
@@ -11,23 +13,20 @@ const Pokemon = (props) => {
     }
 
     return(
-      <div>
-          <div>
+      <div className={styles.pokemonCard}>
+          <div className={styles.pokemonImg}>
               <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
           </div>
-          <div>
-              <h3>{pokemon.name}</h3>
-              <div>#{pokemon.id}</div>
+          <div className={styles.idTop}>
+              <h3 className={styles.pokemonName}>{pokemon.name}</h3>
           </div>
-
-          <div>{pokemon.types.map((type, index) => {
-              return <div key={index}>{type.name}</div>
-          })}
+          <div># {pokemon.id}</div>
+          <div className={styles.pricePkm}>
+              <div className={styles.addBtn}>Price ${pokemon.height}</div>
+              <div className={styles.addBtn}>
+                  <Button color="primary" variant="contained" size="small" onClick={addToCart}>Add to cart</Button>
+              </div>
           </div>
-          <div>
-              <button onClick={addToCart}>Add to cart</button>
-          </div>
-
       </div>
     );
 }

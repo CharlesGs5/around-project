@@ -1,0 +1,7 @@
+.cart {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-end;
+    padding-right: 50px;
+}

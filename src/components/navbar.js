@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <nav>
             <h1>
-                Hello World!
+                Pokemon Shopping Cart!
             </h1>
         </nav>
     );
